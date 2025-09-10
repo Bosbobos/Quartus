@@ -15,7 +15,9 @@ always @* begin
 
     case (operation_i)
         ADD_OP  : result_o = operand1_i + operand2_i;
-        
+        SUB_OP  : result_o = operand1_i + ~operand2_i + 1;
+		  OR_OP   : result_o = operand1_i | operand2_i;
+		  AND_OP  : result_o = operand1_i & operand2_i;
         default: result_o = 4'h0;
     endcase
    
