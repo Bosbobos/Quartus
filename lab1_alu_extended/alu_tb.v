@@ -36,12 +36,12 @@ localparam SUB_OP   =  2'b01;
 localparam OR_OP    =  2'b10;
 localparam AND_OP   =  2'b11;
 
-// modify these parameters accordingly your assessment variant number
-// mine is 15
-localparam OPERAND1_INIT_VALUE = 4'h5;
-localparam OPERAND2_INIT_VALUE = 4'h0;
+// modify this parameters accordingly your assessment variant number
+
+localparam OPERAND1_INIT_VALUE = 4'h4;
+localparam OPERAND2_INIT_VALUE = 4'h7;
 localparam OPERAND1_INC_VALUE = 3;
-localparam OPERAND2_INC_VALUE = 1;
+localparam OPERAND2_INC_VALUE = 2;
 
 function integer compute_result;
     input integer operation, operand1, operand2, carry_in;
@@ -68,6 +68,11 @@ task run_alu_tests();
     
     reg [7:0] op_string;
     
+    reg [4:0] sum5;
+    reg [3:0] exp_res;
+    reg       exp_carry;
+    reg       exp_zero;
+    
     begin
         operation = 0;
         operand1 = 0;
@@ -91,6 +96,17 @@ task run_alu_tests();
                         #1;
                         
                         if (operation == ADD_OP) begin
+                            sum5      = {1'b0, operand1} + {1'b0, operand2} + {4'b0, carry_in};
+                            exp_res   = sum5[3:0];
+                            exp_carry = sum5[4];
+                            exp_zero  = (exp_res == 4'h0);
+
+                            if ( (result !== exp_res) || (carry_out !== exp_carry) || (zero !== exp_zero) ) begin
+                                $display("Calculation error: %0d + %0d + cin=%0d is %0d (must be %0d), carry=%0b (must be %0b), zero=%0b (must be %0b)", operand1, operand2, carry_in,
+                                         result, exp_res, carry_out, exp_carry, zero, exp_zero);
+                            end else begin
+                                $display("Calculation is correct: %0d + %0d + cin=%0d is %0d (carry=%0b, zero=%0b)", operand1, operand2, carry_in, result, carry_out, zero);
+                            end
                             
                         end else if (operation == SUB_OP) begin
                             // borrow flag was set - convert 4bit unsigned value with borrow flag to signed int 

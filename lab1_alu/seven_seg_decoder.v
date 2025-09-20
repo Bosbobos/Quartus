@@ -26,10 +26,10 @@ always @ * begin
         4'h3: result_o = {dot_i, 7'b0110000};
         4'h4: result_o = {dot_i, 7'b0011001};
         4'h5: result_o = {dot_i, 7'b0010010};
-		  4'h6: result_o = {dot_i, 7'b0100000}; 
+		  4'h6: result_o = {dot_i, 7'b0000010}; 
         4'h7: result_o = {dot_i, 7'b1111000};
         4'h8: result_o = {dot_i, 7'b0000000};
-        4'h9: result_o = {dot_i, 7'b0011000};
+        4'h9: result_o = {dot_i, 7'b0010000};
         4'hA: result_o = {dot_i, 7'b0001000};
         4'hB: result_o = {dot_i, 7'b0000011};
         4'hC: result_o = {dot_i, 7'b1000110};

@@ -29,11 +29,11 @@ localparam OR_OP    =  2'b10;
 localparam AND_OP   =  2'b11;
 
 // modify these parameters accordingly your assessment variant number
-// mine is 15
-localparam OPERAND1_INIT_VALUE = 4'h5;
-localparam OPERAND2_INIT_VALUE = 4'h0;
+
+localparam OPERAND1_INIT_VALUE = 4'h4;
+localparam OPERAND2_INIT_VALUE = 4'h7;
 localparam OPERAND1_INC_VALUE = 3;
-localparam OPERAND2_INC_VALUE = 1;
+localparam OPERAND2_INC_VALUE = 2;
 
 function integer compute_result;
     input integer operation, operand1, operand2;
