@@ -25,17 +25,12 @@ always @* begin
 
     case (operation_i)
 
-        // ---------- СЛОЖЕНИЕ: A + B + carry_in ----------
         ADD_OP: begin
             temp      = {1'b0, operand1_i} + {1'b0, operand2_i} + {4'b0, carry_in};
             result_o = temp[3:0];
             carry_out= temp[4];                // перенос из старшего разряда
         end
 
-        // ---------- ВЫЧИТАНИЕ: A - B - borrow_in ----------
-        // A - B - bin = A + ~B + (1 - bin)  => прибавляем ~carry_in вместо 1
-        // tmp[4] тут = 1  => заимствования НЕТ (no-borrow)
-        // Требование твоего TB: carry_out = 1 если заимствование БЫЛО -> инвертируем.
         SUB_OP: begin
             temp      = {1'b0, operand1_i} + {1'b0, ~operand2_i} + {4'b0, ~carry_in};
             result_o = temp[3:0];
