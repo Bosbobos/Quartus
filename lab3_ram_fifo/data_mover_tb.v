@@ -73,13 +73,17 @@ initial begin
     #2000 enable = 1'b1;
     $display("rstn = %b, enable = %b\n", rstn, enable);
     
-    #2000 rstn = 1'b0;
+    //#2000 rstn = 1'b0;
+	 #10000 rstn = 1'b0;
     $display("rstn = %b, enable = %b\n", rstn, enable);
-    #2000 rstn = 1'b1;
+    //#2000 rstn = 1'b1;
+	 #10000 rstn = 1'b1;
     $display("rstn = %b, enable = %b\n", rstn, enable);
-    #2000 enable = 1'b0;
+    //#2000 enable = 1'b0;
+	 #10000 enable = 1'b0;
     $display("rstn = %b, enable = %b\n", rstn, enable);
-    #2000 enable = 1'b1;
+    //#2000 enable = 1'b1;
+	 #10000 enable = 1'b1;
     $display("rstn = %b, enable = %b\n", rstn, enable);
     
     $stop;
